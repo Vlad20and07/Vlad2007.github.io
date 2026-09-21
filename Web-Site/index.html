@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <link rel="icon" href="images/main_book.ico" type="image/png">
+    <title>Library — Добро пожаловать!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="auth-container">
+        <h1 class="auth-title">
+            <img src="images/left-book.png" alt="Книга слева" class="book-icon">
+            <span>Library</span>
+            <img src="images/right-book.png" alt="Книга справа" class="book-icon">
+        </h1>
+
+        <div class="tabs">
+            <button id="tabLogin" class="tab active">Вход</button>
+            <button id="tabRegister" class="tab">Регистрация</button>
+        </div>
+
+        <form id="loginForm" class="auth-form" novalidate autocomplete="off">
+            <h2>Войти в систему</h2>
+            <label for="loginUsername">Логин:</label>
+            <input type="text" id="loginUsername" maxlength="128" required autocomplete="off">
+
+            <label for="loginPassword">Пароль:</label>
+            <div class="password-field">
+                <input type="password" id="loginPassword" maxlength="256" required autocomplete="new-password">
+                <button type="button" id="toggleLoginPassword" class="toggle-password hidden" aria-label="Показать пароль">
+                    <svg id="icon-eye-login" class="icon-eye" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <svg id="icon-eye-off-login" class="icon-eye-off hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <p id="loginEmptyError" class="password-error-message hidden">Заполнены не все поля.</p>
+
+            <button type="submit">Далее</button>
+            <p id="loginError" class="error-message"></p>
+        </form>
+
+        <form id="registerForm" class="auth-form hidden" novalidate autocomplete="off">
+            <h2>Создать учетную запись</h2>
+            <label for="regUsername">Логин:</label>
+            <input type="text" id="regUsername" maxlength="128" required autocomplete="off">
+            <p id="loginRuleError" class="password-error-message hidden">Имя может содержать только латинские буквы.</p>
+
+            <label for="regPassword">Пароль:</label>
+            <div class="password-field">
+                <input type="password" id="regPassword" maxlength="256" required autocomplete="new-password">
+                <button type="button" id="toggleRegPassword" class="toggle-password hidden" aria-label="Показать пароль">
+                    <svg id="icon-eye-reg" class="icon-eye" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <svg id="icon-eye-off-reg" class="icon-eye-off hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                </button>
+            </div>
+            <p id="passwordRuleError" class="password-error-message hidden">Пароль должен содержать минимум 8 символов: a-z, A-Z, цифры 0-9 или другие символы.</p>
+
+            <label for="regPasswordConfirm">Повторный пароль:</label>
+            <div class="password-field">
+                <input type="password" id="regPasswordConfirm" maxlength="256" required autocomplete="new-password">
+                <button type="button" id="toggleRegPasswordConfirm" class="toggle-password hidden" aria-label="Показать пароль">
+                    <svg id="icon-eye-confirm" class="icon-eye" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <svg id="icon-eye-off-confirm" class="icon-eye-off hidden" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                        <line x1="1" y1="1" x2="23" y2="23"></line>
+                    </svg>
+                </button>
+            </div>
+            <p id="passwordMismatchError" class="password-error-message hidden">Пароли не совпадают.</p>
+
+            <button type="submit" id="registerSubmitBtn" class="disabled-btn" aria-disabled="true">Продолжить</button>
+            <p id="registerError" class="error-message"></p>
+        </form>
+    </div>
+
+    <div id="captchaModal" class="modal-overlay hidden">
+        <div class="modal-window">
+            <button type="button" class="modal-close" aria-label="Закрыть окно">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                    <line x1="5" y1="5" x2="19" y2="19"></line>
+                    <line x1="19" y1="5" x2="5" y2="19"></line>
+                </svg>
+            </button>
+            <h2 class="modal-title">Подтвердите личность</h2>
+            <div id="captchaText" class="captcha-text" aria-label="Код с картинки"></div>
+            <label for="captchaInput" class="captcha-label">Введите текст с картинки:</label>
+            <div class="captcha-input-wrap">
+                <input type="text" id="captchaInput" class="captcha-input" maxlength="6" autocomplete="off" inputmode="text">
+                <div class="captcha-input-mirror" id="captchaMirror" aria-hidden="true">
+                    <span class="captcha-cell">_</span>
+                    <span class="captcha-sep" aria-hidden="true">-</span>
+                    <span class="captcha-cell">_</span>
+                    <span class="captcha-sep" aria-hidden="true">-</span>
+                    <span class="captcha-cell">_</span>
+                    <span class="captcha-sep" aria-hidden="true">-</span>
+                    <span class="captcha-cell">_</span>
+                    <span class="captcha-sep" aria-hidden="true">-</span>
+                    <span class="captcha-cell">_</span>
+                    <span class="captcha-sep" aria-hidden="true">-</span>
+                    <span class="captcha-cell">_</span>
+                </div>
+            </div>
+            <p id="captchaError" class="password-error-message hidden"></p>
+            <button type="button" id="captchaSubmit" class="captcha-submit">Отправить</button>
+        </div>
+    </div>
+
+    <div id="loginCaptchaModal" class="modal-overlay hidden">
+        <div class="modal-window">
+            <button type="button" class="modal-close" aria-label="Закрыть окно">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                    <line x1="5" y1="5" x2="19" y2="19"></line>
+                    <line x1="19" y1="5" x2="5" y2="19"></line>
+                </svg>
+            </button>
+            <h2 class="modal-title">Подтвердите личность</h2>
+            <div id="loginCaptchaText" class="captcha-text" aria-label="Код с картинки"></div>
+            <label for="loginCaptchaInput" class="captcha-label">Введите текст с картинки:</label>
+            <div class="captcha-input-wrap">
+                <input type="text" id="loginCaptchaInput" class="captcha-input" maxlength="6" autocomplete="off" inputmode="text">
+                <div class="captcha-input-mirror" id="loginCaptchaMirror" aria-hidden="true">
+                    <span class="captcha-cell">_</span>
+                    <span class="captcha-sep" aria-hidden="true">-</span>
+                    <span class="captcha-cell">_</span>
+                    <span class="captcha-sep" aria-hidden="true">-</span>
+                    <span class="captcha-cell">_</span>
+                    <span class="captcha-sep" aria-hidden="true">-</span>
+                    <span class="captcha-cell">_</span>
+                    <span class="captcha-sep" aria-hidden="true">-</span>
+                    <span class="captcha-cell">_</span>
+                    <span class="captcha-sep" aria-hidden="true">-</span>
+                    <span class="captcha-cell">_</span>
+                </div>
+            </div>
+            <p id="loginCaptchaError" class="password-error-message hidden"></p>
+            <button type="button" id="loginCaptchaSubmit" class="captcha-submit">Отправить</button>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
